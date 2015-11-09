@@ -1,0 +1,72 @@
+# System
+alias ll='ls -lhF'
+alias la='ls -A'
+alias l='ls -CF'
+alias c='clear'
+
+# Packages
+alias get='sudo apt-get install'
+alias search='apt-cache search'
+alias cache='apt-cache'
+
+# Git
+alias gst='git status'
+alias gpr='git pull --rebase'
+alias grrh='git reset --hard HEAD'
+alias gcdf='git clean -df'
+alias gl='git lg | head -12'
+
+# vagrant
+alias v=vagrant
+alias vup='vagrant up'
+alias vssh='vagrant ssh'
+alias vzz='vagrant status'
+
+# docker
+alias dps='docker ps'
+dip() {
+	[[ -z $1 ]] && echo "I need an argument" && return 1
+	if which jq &>/dev/null; then
+		docker inspect $1 | jq -r '.[].NetworkSettings.IPAddress'
+	else
+		docker inspect $1 | sed -e '/"IPAddress":/!d' -e 's/["|:|,]//g' -e "s/^[ ]*//g" -e "s/IPAddress //g"
+	fi
+}
+
+# Containers
+alias gw="docker start synogw"
+
+# Gerrit
+gerritify ()
+{
+    local user=$USERNAME
+    [[ -n $1 ]] && user=$1
+    echo "Gerrit username: $user"
+    submodulesStatus=`git submodule status`;
+    if [ ${#submodulesStatus} -eq 0 ]; then
+        repo=$(basename `git rev-parse --show-toplevel`);
+        newUrl=ssh://`echo $user|tr '[A-Z]' '[a-z]'`@git:29418/${repo}.git;
+        git remote set-url origin ${newUrl};
+        scp -p -P 29418 `echo $user|tr '[A-Z]' '[a-z]'`@git:hooks/commit-msg .git/hooks/;
+        echo "OK! Ce repo a ete Gerritifié !!";
+    else
+        git submodule foreach 'git remote set-url origin ssh://`echo $user|tr [A-Z] [a-z]`@git:29418/${name}.git';
+        git submodule foreach 'scp -p -P 29418 `echo $user|tr [A-Z] [a-z]`@git:hooks/commit-msg ../.git/modules/$name/hooks';
+        echo "OK! Les submodules de ce repo ont été Gerritifié !!";
+    fi
+}
+ungerritify ()
+{
+    submodulesStatus=`git submodule status`;
+    if [ ${#submodulesStatus} -eq 0 ]; then
+        repo=$(basename `git rev-parse --show-toplevel`);
+        if [[ "${repo}" == *piaf* ]]; then
+            newUrl=git@git:/gitrepos/piaf/${repo}.git;
+        else
+            newUrl=git@git:/gitrepos/${repo}.git;
+        fi;
+        git remote set-url origin ${newUrl};
+        echo "OK! Ce repo a ete UNGerritifié !!";
+    fi
+}
+
