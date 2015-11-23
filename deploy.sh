@@ -1,6 +1,8 @@
 #!/bin/bash
 
-scriptDir=$(dirname $(readlink -f $0))
+rl=readlink
+[[ $(uname) == Darwin ]] && rl=greadlink	# OSX compatibility - needs coreutils installed
+scriptDir=$(dirname $($rl -f $0))
 
 echo "Deploying configuration:"
 find $scriptDir -maxdepth 1 -name "_*" | while read file
