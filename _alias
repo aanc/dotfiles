@@ -24,6 +24,8 @@ alias vzz='vagrant status'
 
 # docker
 alias dps='docker ps'
+alias dm='docker-machine'
+alias dc='docker-compose'
 dip() {
 	[[ -z $1 ]] && echo "I need an argument" && return 1
 	if which jq &>/dev/null; then
