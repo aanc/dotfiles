@@ -37,6 +37,13 @@ dip() {
 
 # Containers
 alias gw="docker start synogw"
+alias rainbowstream="docker run -it --rm \
+	--net=container:synogw \
+	-v /etc/localtime:/etc/localtime:ro \
+	-v $HOME/.rainbow_oauth:/root/.rainbow_oauth \
+	-v $HOME/.rainbow_config.json:/root/.rainbow_config.json \
+	--name rainbowstream \
+	jess/rainbowstream --proxy-host localhost --proxy-port 3128 --proxy-type HTTP"
 
 # Gerrit
 gerritify ()
