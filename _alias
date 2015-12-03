@@ -3,6 +3,7 @@ alias ll='ls -lhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias c='clear'
+alias ip='ip -c'
 
 # Packages
 alias get='sudo apt-get install'
