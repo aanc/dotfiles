@@ -6,9 +6,8 @@ alias c='clear'
 alias ip='ip -c'
 
 # Packages
-alias get='sudo apt-get install'
-alias search='apt-cache search'
-alias cache='apt-cache'
+alias get='sudo dnf install'
+alias search='dnf search'
 
 # Git
 alias gst='git status'
