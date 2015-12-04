@@ -15,6 +15,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias c='clear'
 alias ip='ip -c'
+psg() { ps -ef | grep "$@" }
 
 # Packages
 alias get='sudo dnf install'
