@@ -1,3 +1,14 @@
+# Colors
+RED="\\033[1;31m"
+GREEN="\\033[1;32m"
+YELLOW="\\033[1;33m"
+BLUE="\\033[1;34m"
+MAGENTA="\\033[1;35m"
+CYAN="\\033[1;36m"
+GRAS="\033[1m"
+END="\\033[1;00m"
+FATAL="\\033[1;37;41m" # Blanc sur fond rouge vif
+
 # System
 alias ll='ls -lhF'
 alias la='ls -A'
@@ -23,7 +34,6 @@ alias vssh='vagrant ssh'
 alias vzz='vagrant status'
 
 # docker
-alias dps='docker ps'
 alias dm='docker-machine'
 alias dc='docker-compose'
 dip() {
@@ -33,6 +43,34 @@ dip() {
 	else
 		docker inspect $1 | sed -e '/"IPAddress":/!d' -e 's/["|:|,]//g' -e "s/^[ ]*//g" -e "s/IPAddress //g"
 	fi
+}
+dps() {
+	local awkFormat="%-25s %-25s %-25s"
+	local containerCount=0
+
+	docker ps $1 --format="{{.ID}}|{{.Image}}|{{.CreatedAt}}|{{.RunningFor}}|{{.Status}}|{{.Size}}|{{.Names}}|{{.Ports}}" \
+	| while IFS='|' read id image createdAt runningFor containerStatus size names ports
+	do
+		containerCount=$((containerCount + 1))
+		local statusColor=${RED}
+		[[ $containerStatus =~ ^Up ]] && statusColor=${GREEN} 
+
+		echo -en " ${statusColor}$id${END}"
+		[[ -n $names ]] && echo -en "${GRAS} →  $names${END}"
+		echo
+
+		echo -e "   ${GRAS}Image:${END} $image"
+		echo -e "   ${GRAS}Creation:${END} $createdAt"
+		echo -e "   ${GRAS}Status:${END} ${statusColor}$containerStatus${END}"
+		echo -e "   ${GRAS}Size:${END} $size"
+		if [[ -n $ports ]];  then
+			echo -e "   ${GRAS}Ports:${END} $ports"
+		fi
+		echo
+
+	done
+
+	echo " $containerCount containers."
 }
 
 # Containers
