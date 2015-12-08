@@ -74,6 +74,18 @@ dps() {
 	echo " $containerCount containers."
 }
 
+# Function allowing easy ssh'ing into containers exposing their port 22 (i know, ssh containers are evil)
+dssh() {
+	local sshPort=$(docker ps --format="{{.Ports}}" --filter="name=$1" 2>/dev/null | sed -r -e 's|.*:([0-9]*)->22/.*|\1|')
+	local username=$2
+
+	[[ -z $username ]] && echo "Please specify username: dssh <container> <username>" && return 1
+	[[ -z $sshPort ]] && echo "Could not determine which port to use for ssh connection" && return 1
+
+	ssh localhost -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p $sshPort -l $username
+
+}
+
 # Containers
 alias gw="(docker run -d --restart=always --name synogw -e "SSHGW=syno" -p 43128:3128 -p 43022:10022 local/sshgw || docker start synogw) &>/dev/null; dps -l name=synogw"
 alias proxy="(docker run -d --restart=always --name proxy-mipih -p 33128:3128 local/proxy-mipih || docker start proxy-mipih) &>/dev/null; dps -l name=proxy-mipih"
