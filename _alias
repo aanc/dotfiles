@@ -96,6 +96,7 @@ alias rainbowstream="docker run -it --rm \
 	-v $HOME/.rainbow_config.json:/root/.rainbow_config.json \
 	--name rainbowstream \
 	jess/rainbowstream --proxy-host localhost --proxy-port 3128 --proxy-type HTTP"
+alias viz="(docker run -d --name viz -v /var/run/docker.sock:/var/run/docker.sock -e PORT=3000 -p 3000:3000 centurylink/image-graph || docker start viz) &>/dev/null && google-chrome-stable http://localhost:3000"
 
 # Gerrit
 gerritify ()
