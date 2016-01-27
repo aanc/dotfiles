@@ -10,3 +10,5 @@ export LESS_TERMCAP_us=$'\E[01;33m'
 # Add empty line between command and output
 preexec() { print "" }
 
+# Android tools
+PATH=$PATH:/home/adrien/Android/Sdk/platform-tools
