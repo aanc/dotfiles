@@ -65,7 +65,6 @@ alias gcdf='git clean -df'
 alias gl='git lg | head -12'
 
 # vagrant
-alias v=vagrant
 alias vup='vagrant up'
 alias vssh='vagrant ssh'
 alias vzz='vagrant status'
