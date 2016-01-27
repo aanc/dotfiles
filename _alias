@@ -21,6 +21,42 @@ psg() { ps -ef | grep "$@" }
 alias get='sudo dnf install'
 alias search='dnf search'
 
+# Volume
+
+v() {
+	local firstChar=${1:0:1}
+	local volume="+0%"
+
+	case $firstChar in
+		-|+) volume="${firstChar}$(( ${#1} * 5))%";;
+		[0-9]) volume="${1}%";;
+		*) cat <<-EOF
+			Usage: v <+*|-*|value>
+
+			Increase, decrease or set volume to a given value.
+			Exemples:
+			    - v +         Increase volume by 5%
+			    - v ++++      Increase volume by 20%
+			    - v --        Decrease volume by 10%
+			    - v 0         Mute sound
+			    - v 50        Set volume to 50%
+
+			EOF
+	esac
+
+	# Specific to pulse, would need another command for alsamixer (or whatever else)
+	pactl set-sink-volume @DEFAULT_SINK@ "${volume}"
+	echo "Volume: $(pactl list sinks | grep '^[[:space:]]Volume:' | cut -d'/' -f2 | tr -d ' ')"
+}
+
+alias mute='pactl set-sink-mute @DEFAULT_SINK@ toggle'
+alias v+='v +'
+alias v++='v ++'
+alias v+++='v +++'
+alias v-='v -'
+alias v--='v --'
+alias v---='v ---'
+
 # Git
 alias gst='git status'
 alias gpr='git pull --rebase'
