@@ -47,6 +47,9 @@ v() {
 	# Specific to pulse, would need another command for alsamixer (or whatever else)
 	pactl set-sink-volume @DEFAULT_SINK@ "${volume}"
 	echo "Volume: $(pactl list sinks | grep '^[[:space:]]Volume:' | cut -d'/' -f2 | tr -d ' ')"
+
+	# Notifying i3blocks
+	pidof i3blocks &>/dev/null && pkill -RTMIN+10 i3blocks
 }
 
 alias mute='pactl set-sink-mute @DEFAULT_SINK@ toggle'
