@@ -14,7 +14,30 @@
 font pango:Ubuntu Mono 10
 
 # Wallpaper
-exec --no-startup-id feh --bg-fill ~/.i3/wallpaper
+exec_always feh --bg-scale ~/.i3/wallpaper
+
+# Highlight Colors
+# Emerald:	#19b898
+# Green: 	#1dd260
+# Blue: 	#0f73fb
+
+# set color aliases
+set $bg-color            #2f343f
+set $inactive-bg-color   #4c5366
+set $text-color          #ffffff
+set $inactive-text-color #bfbfbf
+set $urgent-bg-color     #e53935
+set $highlight-color     #19b898
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $iancative-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $iancative-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+# hide edge indicator
+# hide_edge_borders both
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -108,29 +131,41 @@ bindsym Mod1+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod1+minus scratchpad show
 
+# workspace aliases
+set $w1 "1  "
+set $w2 "2  "
+set $w3 "3 "
+set $w4 "4  "
+set $w5 "5 "
+set $w6 "6 "
+set $w7 "7 "
+set $w8 "8 "
+set $w9 "9 "
+set $w10 "10 "
+
 # switch to workspace
-bindsym Mod1+1 workspace 1
-bindsym Mod1+2 workspace 2
-bindsym Mod1+3 workspace 3
-bindsym Mod1+4 workspace 4
-bindsym Mod1+5 workspace 5
-bindsym Mod1+6 workspace 6
-bindsym Mod1+7 workspace 7
-bindsym Mod1+8 workspace 8
-bindsym Mod1+9 workspace 9
-bindsym Mod1+0 workspace 10
+bindsym Mod1+1 workspace $w1
+bindsym Mod1+2 workspace $w2
+bindsym Mod1+3 workspace $w3
+bindsym Mod1+4 workspace $w4
+bindsym Mod1+5 workspace $w5
+bindsym Mod1+6 workspace $w6
+bindsym Mod1+7 workspace $w7
+bindsym Mod1+8 workspace $w8
+bindsym Mod1+9 workspace $w9
+bindsym Mod1+0 workspace $w10
 
 # move focused container to workspace
-bindsym Mod1+Shift+1 move container to workspace 1
-bindsym Mod1+Shift+2 move container to workspace 2
-bindsym Mod1+Shift+3 move container to workspace 3
-bindsym Mod1+Shift+4 move container to workspace 4
-bindsym Mod1+Shift+5 move container to workspace 5
-bindsym Mod1+Shift+6 move container to workspace 6
-bindsym Mod1+Shift+7 move container to workspace 7
-bindsym Mod1+Shift+8 move container to workspace 8
-bindsym Mod1+Shift+9 move container to workspace 9
-bindsym Mod1+Shift+0 move container to workspace 10
+bindsym Mod1+Shift+1 move container to workspace $w1
+bindsym Mod1+Shift+2 move container to workspace $w2
+bindsym Mod1+Shift+3 move container to workspace $w3
+bindsym Mod1+Shift+4 move container to workspace $w4
+bindsym Mod1+Shift+5 move container to workspace $w5
+bindsym Mod1+Shift+6 move container to workspace $w6
+bindsym Mod1+Shift+7 move container to workspace $w7
+bindsym Mod1+Shift+8 move container to workspace $w8
+bindsym Mod1+Shift+9 move container to workspace $w9
+bindsym Mod1+Shift+0 move container to workspace $w10
 
 # Move workspace to next output
 bindsym Mod1+n move workspace to output right
@@ -174,8 +209,18 @@ bindsym Mod1+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
-        tray_output primary
+  status_command i3blocks -c ~/.i3/i3blocks.conf
+  font pango: Noto Sans 10, FontAwesome 10
+
+  colors {
+		background $bg-color
+	  separator #757575
+		#                  border             background         text
+		focused_workspace  $bg-color          $highlight-color   $text-color
+		active_workspace   $bg-color          $highlight-color   $text-color
+		inactive_workspace $bg-color          $bg-color          $text-color
+		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+	}
 }
 
 #######################################################################
