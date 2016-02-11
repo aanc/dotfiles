@@ -66,6 +66,7 @@ bindsym Mod1+Return exec gnome-terminal
 
 # kill focused window
 bindsym Mod1+Shift+q kill
+bindsym Mod1+F4 kill
 
 # start dmenu (a program launcher)
 #bindsym Mod1+d exec dmenu_run
