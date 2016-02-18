@@ -103,7 +103,7 @@ dps() {
 		echo -e "   ${GRAS}Status:${END} ${statusColor}$containerStatus${END}"
 		echo -e "   ${GRAS}Size:${END} $size"
 		if [[ -n $ports ]];  then
-			echo -e "   ${GRAS}Ports:${END} $ports"
+			echo -e "   ${GRAS}Ports:${END} $(echo $ports | sed 's/0.0.0.0://g')"
 		fi
 		echo
 
