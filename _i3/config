@@ -19,7 +19,7 @@ exec_always feh --bg-scale ~/.i3/wallpaper
 # Highlight Colors
 # Emerald:	#19b898
 # Green: 	#1dd260
-# Blue: 	#0f73fb
+# Blue: 	#198db8
 
 # set color aliases
 set $bg-color            #2f343f
@@ -28,7 +28,7 @@ set $border-color        #2f343f
 set $inactive-bg-color   #5a5c61
 set $inactive-text-color #939393
 set $urgent-bg-color     #e53935
-set $highlight-color     #19b898
+set $highlight-color     #198db8
 
 # window colors
 #                       border              background         text                 indicator
@@ -42,7 +42,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -74,7 +74,7 @@ bindsym Mod1+F4 kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 #bindsym Mod1+d exec --no-startup-id i3-dmenu-desktopMod1+d
-bindsym Mod1+d       exec rofi -show run -lines 5 -eh 2 -opacity "85" -bc "$highlight-color" -bg "$bg-color" -fg "$text-color" -hlfg "$highlight-color" -hlbg "$inactive-bg-color" -font "Noto Sans 10"
+bindsym Mod1+d       exec rofi -show run -lines 5 -eh 2 -opacity "85" -bc "$highlight-color" -bg "$bg-color" -fg "$text-color" -hlfg "$highlight-color" -hlbg "$inactive-bg-color" -font "Terminus 10"
 
 # change focus
 bindsym Mod1+$left focus left
@@ -134,16 +134,16 @@ bindsym Mod1+Shift+minus move scratchpad
 bindsym Mod1+minus scratchpad show
 
 # workspace aliases
-set $w1 "1  "
-set $w2 "2  "
-set $w3 "3 "
-set $w4 "4  "
-set $w5 "5 "
-set $w6 "6 "
-set $w7 "7 "
-set $w8 "8 "
-set $w9 "9 "
-set $w10 "10 "
+set $w1 "1"
+set $w2 "2"
+set $w3 "3"
+set $w4 "4"
+set $w5 "5"
+set $w6 "6"
+set $w7 "7"
+set $w8 "8"
+set $w9 "9"
+set $w10 "10"
 
 # switch to workspace
 bindsym Mod1+1 workspace $w1
@@ -219,7 +219,7 @@ bindsym Mod1+r mode "resize"
 # finds out, if available)
 bar {
   status_command i3blocks -c ~/.i3/i3blocks.conf
-  font pango: Noto Sans 10, FontAwesome 10
+  font pango:Terminus, FontAwesome 10
 
   colors {
 		background $bg-color
