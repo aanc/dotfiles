@@ -48,6 +48,7 @@ cmap w!! w !sudo tee % >/dev/null
 
 "NERDTree
 let g:NERDTreeWinPos = "right" " put nerdtree on the right
+let NERDTreeShowHidden=1 " show hidden files in nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " closes vim if nerdtree is the only remaining window
 map <Leader>n :NERDTreeToggle<CR>
 
@@ -56,4 +57,7 @@ color twilight
 
 " airline
 let g:airline_powerline_fonts = 1
+
+" nohl
+map <Leader>h :nohl<CR>
 
