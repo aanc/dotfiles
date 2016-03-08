@@ -75,6 +75,16 @@ alias vzz='vagrant status'
 # docker
 alias dm='docker-machine'
 alias dc='docker-compose'
+dclean() {
+	echo "Cleaning exited containers:"
+	docker rm $(docker ps -qa --filter="status=exited" | xargs)
+
+	echo
+	echo "Cleaning untagged images"
+	docker rmi $(docker images | grep "<none>" | awk '{print $3}' | xargs)
+	echo
+}
+
 dip() {
 	[[ -z $1 ]] && echo "I need an argument" && return 1
 	if which jq &>/dev/null; then
