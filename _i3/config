@@ -16,6 +16,9 @@ font pango:Ubuntu Mono 10
 # Wallpaper
 exec_always feh --bg-scale ~/.i3/wallpaper
 
+# Compositor
+exec_always /usr/bin/compton --config ~/.i3/compton.conf
+
 # Highlight Colors
 # Emerald:	#19b898
 # Green: 	#1dd260
