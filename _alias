@@ -135,7 +135,7 @@ dssh() {
 }
 
 # Containers
-alias gw="(docker run -d --restart=always --name synogw -e "SSHGW=syno" -p 32017:3128 -p 43022:10022 local/sshgw || docker start synogw) &>/dev/null; dps -l name=synogw"
+alias gw="(docker run -d --restart=always --name synogw -e "SSHGW=syno" -p 32017:3128 -p 43022:43022 -p 15901:5901 local/sshgw || docker start synogw) &>/dev/null; dps -l name=synogw"
 alias proxy="(docker run -d --restart=always --name proxy-mipih -p 33128:3128 local/proxy-mipih || docker start proxy-mipih) &>/dev/null; dps -l name=proxy-mipih"
 alias rainbowstream="docker run -it --rm \
 	--net=container:synogw \
