@@ -19,6 +19,10 @@ exec_always feh --bg-scale ~/.i3/wallpaper
 # Compositor
 exec_always /usr/bin/compton --config ~/.i3/compton.conf
 
+# Network tray icon for easy wifi connection
+exec /usr/bin/wicd-gtk -t
+for_window [class="Wicd-client.py"] floating enable
+
 # Highlight Colors
 # Emerald:	#19b898
 # Green: 	#1dd260
