@@ -234,3 +234,18 @@ bar {
 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 	}
 }
+
+# i3-gaps specific
+for_window [class="^.*"] border pixel 1
+gaps inner 8
+gaps outer 4
+smart_gaps on
+
+set $mode_gaps Toggle gaps: (1) on (2) off
+bindsym Mod1+g mode "$mode_gaps"
+mode "$mode_gaps" {
+    bindsym 1 mode "default", gaps inner all set 10, gaps outer all set 4
+    bindsym 2 mode "default", gaps inner all set 1, gaps outer all set 1
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
