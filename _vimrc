@@ -43,6 +43,22 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
+set cursorline		" highlight current line
+set showtabline=2	" always show tabs 
+set laststatus=2	" always show status bas
+syntax enable		" enable syntax highlighting
+set wildmenu 		" Better command-line completion
+set scrolloff=10 	" Always keep 10 lines after or before when scrolling
+set sidescrolloff=5 " Always keep 5 lines after or before when side scrolling
+set noshowmode 		" Don't display the current mode
+set showbreak=↪ 		" See this char when wrapping text
+
+""" Prevent lag when hitting escape
+set ttimeoutlen=0
+set timeoutlen=1000 
+au InsertEnter * set timeout
+au InsertLeave * set notimeout
+
 " w!! -> when you forget to open a file with sudo
 cmap w!! w !sudo tee % >/dev/null
 
@@ -53,11 +69,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 map <Leader>n :NERDTreeToggle<CR>
 
 " theme
-color twilight
+set background=dark
+color lucius
 
 " airline
 let g:airline_powerline_fonts = 1
 
 " nohl
 map <Leader>h :nohl<CR>
+
 
