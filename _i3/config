@@ -14,10 +14,10 @@
 font pango:Ubuntu Mono 10
 
 # Wallpaper
-exec_always feh --bg-scale ~/.i3/wallpaper
+exec_always --no-startup-id feh --bg-scale ~/.i3/wallpaper
 
 # Compositor
-exec_always /usr/bin/compton --config ~/.i3/compton.conf
+exec_always --no-startup-id /usr/bin/compton --config ~/.i3/compton.conf
 
 # Network tray icon for easy wifi connection
 exec /usr/bin/wicd-gtk -t
