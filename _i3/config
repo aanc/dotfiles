@@ -199,6 +199,10 @@ bindsym Mod4+b exec rhythmbox-client --previous
 bindsym Mod4+a exec pactl set-sink-volume @DEFAULT_SINK@ "+5%" && pkill -RTMIN+10 i3blocks
 bindsym Mod4+q exec pactl set-sink-volume @DEFAULT_SINK@ "-5%" && pkill -RTMIN+10 i3blocks
 
+# Screenshots
+bindsym Print exec scrot -e 'mv $f /home/adrien/Pictures/screenshots'
+bindsym Mod1+Print exec scrot -s -e 'mv $f /home/adrien/Pictures/screenshots'
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
