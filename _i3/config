@@ -19,9 +19,6 @@ exec_always --no-startup-id feh --bg-scale ~/.i3/wallpaper
 # Compositor
 exec_always --no-startup-id /usr/bin/compton --config ~/.i3/compton.conf
 
-# Network tray icon for easy wifi connection
-exec /usr/bin/wicd-gtk -t
-
 # Floting windows
 for_window [class="Wicd-client.py"] floating enable
 for_window [class="Vinagre"] floating enable
