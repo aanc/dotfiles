@@ -89,4 +89,9 @@ let g:airline_powerline_fonts = 1
 " nohl
 map <Leader>h :nohl<CR>
 
+" Various practical shortcuts
+map <Leader>a gT
+map <Leader>z gt
+map <F8> gt " F8 for next tab
+map <F7> gT " F7 is for previous tab
 
