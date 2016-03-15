@@ -68,6 +68,17 @@ let NERDTreeShowHidden=1 " show hidden files in nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " closes vim if nerdtree is the only remaining window
 map <Leader>n :NERDTreeToggle<CR>
 
+" CtrlP config
+let g:ctrlp_map = '<c-p>' " ctrl+p for fuzzy find files
+let g:ctrlp_cmd = 'CtrlP'
+
+" Multicursors config
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
 " theme
 set background=dark
 color lucius
