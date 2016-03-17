@@ -22,6 +22,7 @@ exec_always --no-startup-id /usr/bin/compton --config ~/.i3/compton.conf
 # Floting windows
 for_window [class="Wicd-client.py"] floating enable
 for_window [class="Vinagre"] floating enable
+for_window [class="feh"] floating enable
 
 # Highlight Colors
 # Emerald:	#19b898
@@ -197,8 +198,9 @@ bindsym Mod4+a exec pactl set-sink-volume @DEFAULT_SINK@ "+5%" && pkill -RTMIN+1
 bindsym Mod4+q exec pactl set-sink-volume @DEFAULT_SINK@ "-5%" && pkill -RTMIN+10 i3blocks
 
 # Screenshots
-bindsym Print exec scrot -e 'mv $f /home/adrien/Pictures/screenshots'
-bindsym Mod1+Print exec scrot -s -e 'mv $f /home/adrien/Pictures/screenshots'
+bindsym Print exec scrot -e 'feh -x. $f' $HOME/Pictures/screenshots/screenshot-$(date +%F_%T).png
+bindsym Shift+Print --release exec scrot -s -e 'feh -x. $f' $HOME/Pictures/screenshots/screenshot-$(date +%F_%T).png 
+bindsym Ctrl+Print --release exec scrot -s $HOME/Pictures/screenshots/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f && feh -x. $f'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
