@@ -19,6 +19,9 @@ exec_always --no-startup-id feh --bg-scale ~/.i3/wallpaper
 # Compositor
 exec_always --no-startup-id /usr/bin/compton --config ~/.i3/compton.conf
 
+# Notification daemon
+exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc -u c "lower right"
+
 # Floting windows
 for_window [class="Wicd-client.py"] floating enable
 for_window [class="Vinagre"] floating enable
