@@ -1,17 +1,17 @@
 #!/bin/bash
 
-wall=$(curl -s http://forge.mipih.net/ic/view/_FDXT_DSL/view/Exploitation/view/Wall/ | sed -e "s|</div>|</div>\n|g" | grep 'class="job' | sed -r -e 's|^.* class="job ([a-z]*) .*$|\1|')
+wall=$(curl -s http://forge/ic/view/_FDXT_DSL/view/Exploitation/view/Wall/ | sed -e "s|</div>|</div>\n|g" | grep 'class="job' | sed -r -e 's|^.* class="job ([a-z]*) .*$|\1|')
 [[ -z $wall ]] && echo "unreachable" && echo && echo \#d03f3f
 
 total=$(wc -l <<< $wall)
 failed=$(egrep -o "failing|claimed" <<< $wall | wc -l)
 
 if [[ $failed -gt 0 ]]; then
-	echo "$failed KO"
+	echo "Jenkins: $failed KO"
 	echo
 	echo \#cc5b5b
 else
-	echo "OK"
+	echo 'Jenkins:OK'
 	echo
 	echo \#6BC289
 fi
