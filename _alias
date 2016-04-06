@@ -41,7 +41,7 @@ v() {
 			    - v 0         Mute sound
 			    - v 50        Set volume to 50%
 
-			EOF
+EOF
 	esac
 
 	# Specific to pulse, would need another command for alsamixer (or whatever else)
@@ -147,6 +147,9 @@ alias rainbowstream="docker run -it --rm \
 	jess/rainbowstream --proxy-host localhost --proxy-port 3128 --proxy-type HTTP"
 alias viz="(docker run -d --name viz -v /var/run/docker.sock:/var/run/docker.sock -e PORT=3000 -p 3000:3000 centurylink/image-graph || docker start viz) &>/dev/null && google-chrome-stable http://localhost:3000"
 
+# vpn
+alias synovpn="sudo openvpn --config ~/.ovpn/openvpn.ovpn --daemon"
+
 # Gerrit
 gerritify ()
 {
@@ -181,3 +184,5 @@ ungerritify ()
     fi
 }
 
+alias ww="cd /home/adrien/sandbox/work"
+alias pp="cd /home/adrien/sandbox/stuff"
