@@ -95,3 +95,6 @@ map <Leader>z gt
 map <F8> gt " F8 for next tab
 map <F7> gT " F7 is for previous tab
 
+" Syntax
+autocmd BufNewFile,BufReadPost *.adoc set syntax=asciidoc
+autocmd BufNewFile,BufReadPost *.adoc set cc=80 
