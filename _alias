@@ -137,7 +137,6 @@ dssh() {
 # Containers
 alias synogw="(docker stop homegw; docker run -d --restart=always --name synogw -e "SSHGW=syno" -p 32017:3128 -p 43022:43022 -p 15901:5901 local/sshgw || docker start synogw) &>/dev/null; dps -l name=synogw"
 alias homegw="(docker stop synogw; docker run -d --restart=always --name homegw -e "SSHGW=home" -p 32017:3128 -p 43022:43022 -p 15901:5901 local/sshgw || docker start synogw) &>/dev/null; dps -l name=synogw"
-alias proxy="(docker run -d --restart=always --name proxy-mipih -p 33128:3128 local/proxy-mipih || docker start proxy-mipih) &>/dev/null; dps -l name=proxy-mipih"
 alias rainbowstream="docker run -it --rm \
 	--net=container:synogw \
 	-v /etc/localtime:/etc/localtime:ro \
@@ -162,11 +161,11 @@ gerritify ()
         newUrl=ssh://`echo $user|tr '[A-Z]' '[a-z]'`@git:29418/${repo}.git;
         git remote set-url origin ${newUrl};
         scp -p -P 29418 `echo $user|tr '[A-Z]' '[a-z]'`@git:hooks/commit-msg .git/hooks/;
-        echo "OK! Ce repo a ete Gerritifié !!";
+        echo "OK! Ce repo a ete Gerritifie !!";
     else
         git submodule foreach 'git remote set-url origin ssh://`echo $user|tr [A-Z] [a-z]`@git:29418/${name}.git';
         git submodule foreach 'scp -p -P 29418 `echo $user|tr [A-Z] [a-z]`@git:hooks/commit-msg ../.git/modules/$name/hooks';
-        echo "OK! Les submodules de ce repo ont été Gerritifié !!";
+        echo "OK! Les submodules de ce repo ont ete Gerritifie !!";
     fi
 }
 ungerritify ()
@@ -180,7 +179,7 @@ ungerritify ()
             newUrl=git@git:/gitrepos/${repo}.git;
         fi;
         git remote set-url origin ${newUrl};
-        echo "OK! Ce repo a ete UNGerritifié !!";
+        echo "OK! Ce repo a ete UNGerritifie !!";
     fi
 }
 
