@@ -86,8 +86,8 @@ bindsym Mod1+F4 kill
 # installed.
 #bindsym Mod1+d exec --no-startup-id i3-dmenu-desktopMod1+d
 bindsym Mod1+d       exec rofi -show run -lines 5 -eh 2 -opacity "85" -bc "$highlight-color" -bg "$bg-color" -fg "$text-color" -hlfg "$highlight-color" -hlbg "$inactive-bg-color" -font "Terminus 10"
-bindsym Mod4+m       exec ~/sandbox/perso/rofi-mods/rofi-meteo.sh
-bindsym Mod4+f       exec ~/sandbox/perso/rofi-mods/rofi-browser-tabs.sh
+bindsym Mod4+m       exec ~/sandbox/stuff/rofi-mods/rofi-meteo.sh
+bindsym Mod4+f       exec ~/sandbox/stuff/rofi-mods/rofi-browser-tabs.sh
 
 # change focus
 bindsym Mod1+$left focus left
