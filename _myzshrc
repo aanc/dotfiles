@@ -10,3 +10,6 @@ export LESS_TERMCAP_us=$'\E[01;33m'
 # Add empty line between command and output
 preexec() { print "" }
 
+# Remap caps lock to ctrl
+setxkbmap -option ctrl:nocaps
+
