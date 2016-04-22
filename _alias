@@ -52,6 +52,8 @@ EOF
 	pidof i3blocks &>/dev/null && pkill -RTMIN+10 i3blocks
 }
 
+alias noproxy='unset HTTP_PROXY HTTPS_PROXY FTP_PROXY NO_PROXY http_proxy https_proxy ftp_proxy no_proxy'
+
 alias mute='pactl set-sink-mute @DEFAULT_SINK@ toggle'
 alias v+='v +'
 alias v++='v ++'
@@ -84,6 +86,17 @@ dclean() {
 	docker rmi $(docker images | grep "<none>" | awk '{print $3}' | xargs)
 	echo
 }
+denv() {
+	[[ $1 != reset ]] \
+		&& eval $(docker-machine env $1) \
+		|| unset export DOCKER_TLS_VERIFY DOCKER_HOST DOCKER_CERT_PATH DOCKER_MACHINE_NAME
+
+}
+
+_denv() {
+	compadd $(docker-machine ls -q)
+}
+compdef _denv denv
 
 dip() {
 	[[ -z $1 ]] && echo "I need an argument" && return 1
@@ -185,3 +198,4 @@ ungerritify ()
 
 alias ww="cd /home/adrien/sandbox/work"
 alias pp="cd /home/adrien/sandbox/stuff"
+alias gogo="cd $GOPATH"
