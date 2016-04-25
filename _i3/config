@@ -192,6 +192,9 @@ bindsym Mod1+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# Reconfigure screens
+bindsym Mod1+Shift+s exec $HOME/.i3/xrandr-config.sh
+
 # Lock screen
 bindsym Mod4+l exec i3lock -ec 000000
 
