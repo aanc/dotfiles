@@ -1,8 +1,17 @@
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
 ! ------------------------------------------------------------------------------
+rofi.width:		50
+rofi.padding:	300
+rofi.fullscreen: true
+rofi.fixed-num-lines: true
+rofi.bw:		0
+rofi.location:	0
+rofi.lines:		10
+rofi.eh: 1
+rofi.font: Ubuntu 18
 rofi.color-enabled: true
-rofi.color-window: #002b37, #002b37, #003642
-rofi.color-normal: #002b37, #819396, #003643, #008ed4, #ffffff
-rofi.color-active: #002b37, #008ed4, #003643, #008ed4, #66c6ff
-rofi.color-urgent: #002b37, #da4281, #003643, #008ed4, #890661
+rofi.color-window: argb:aa263238, argb:aa263238, #ffffff
+rofi.color-normal: argb:2000000, #eceff1, argb:2000000, #308bdb, #eceff1
+rofi.color-active: #fdf6e3, #268bd2, #eee8d5, #005b9b, #fdf6e3
+rofi.color-urgent: #fdf6e3, #dc322f, #eee8d5, #dc322f, #fdf6e3
