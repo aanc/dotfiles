@@ -118,7 +118,15 @@ dps() {
 		[[ $containerStatus =~ ^Up ]] && statusColor=${GREEN} 
 
 		echo -en " ${statusColor}$id${END}"
-		[[ -n $names ]] && echo -en "${GRAS} →  $names${END}"
+		if [[ -n $names ]]; then
+			swarmNode=$(cut -d'/' -f1 <<< $names)
+			containerName=$(cut -d'/' -f2 <<< $names)
+			if [[ $swarmNode == $containerName ]]; then
+				echo -en "${GRAS} →  $names${END}"
+			else
+				echo -en "${GRAS} →  ${BLUE}$swarmNode/${END}${GRAS}$containerName${END}"
+			fi
+		fi
 		echo
 
 		echo -e "   ${GRAS}Image:${END} $image"
