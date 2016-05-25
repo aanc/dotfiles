@@ -53,6 +53,12 @@ set sidescrolloff=5 " Always keep 5 lines after or before when side scrolling
 set noshowmode 		" Don't display the current mode
 set showbreak=↪ 		" See this char when wrapping text
 
+set list listchars=tab:»·,trail:·,nbsp:·
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
 """ Prevent lag when hitting escape
 set ttimeoutlen=0
 set timeoutlen=1000 
@@ -71,6 +77,18 @@ map <Leader>n :NERDTreeToggle<CR>
 " CtrlP config
 let g:ctrlp_map = '<c-p>' " ctrl+p for fuzzy find files
 let g:ctrlp_cmd = 'CtrlP'
+
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
 
 " Multicursors config
 let g:multi_cursor_use_default_mapping=0
@@ -98,3 +116,12 @@ map <F7> gT " F7 is for previous tab
 " Syntax
 autocmd BufNewFile,BufReadPost *.adoc set syntax=asciidoc
 autocmd BufNewFile,BufReadPost *.adoc set cc=80 
+
+" Unbind the cursor keys in insert, normal and visual modes.
+for prefix in ['n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap " . key . " <Nop>"
+  endfor
+endfor
+
+
