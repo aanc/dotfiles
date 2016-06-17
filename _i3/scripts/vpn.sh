@@ -28,11 +28,9 @@ then
 		echo "VPN:Up"
 	fi
 	echo
-	echo \#6BC289
+	echo \#ffffff
 else
 	echo "VPN:Down"
 	echo
 	echo \#cc5b5b
 fi
-
-

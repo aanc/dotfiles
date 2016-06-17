@@ -5,7 +5,7 @@ for iface in $(grep -Hs "1" /sys/class/net/eno*/carrier /sys/class/net/eth*/carr
 do
   speed=$(ethtool eno1 2>/dev/null | grep Speed | tr -d " " | cut -d: -f2)
   echo -n "$speed"
-  color=\#5ba7c3
+  color=\#ffffff
 done
 
 echo
