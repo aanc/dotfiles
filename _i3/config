@@ -23,7 +23,7 @@ exec_always --no-startup-id /usr/bin/compton --config ~/.i3/compton.conf
 exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc -u c "lower right"
 
 # network manager applet
-exec_always --no-startup-id nm-applet
+exec_always --no-startup-id (pidof nm-applet || nm-applet)
 
 # Floting windows
 for_window [class="Wicd-client.py"] floating enable
