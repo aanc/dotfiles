@@ -11,7 +11,7 @@ wall=$(curl -s $wallURL | sed -e "s|</div>|</div>\n|g" | grep 'class="job' | sed
 failed=$(egrep -o "failing|claimed" <<< "$wall" | wc -l)
 
 if [[ -n $BLOCK_BUTTON ]]; then
-	jobName=$(egrep "failing|claimed" <<< "$wall" | sed -r -e 's/:(.*)$/ (\1)/' | rofi -dmenu -no-fullscreen -font "DejaVu Sans Mono 10" -p "Failing jobs:" -padding 2 -location 3 -yoffset 24 -lines $failed | cut -d' ' -f1)
+	jobName=$(egrep "failing|claimed" <<< "$wall" | tr ':' '\n' | yad --list --column="Job" --column="Status" --width=500 --height=200 --no-buttons --mouse --on-top --undecorated --skip-taskbar | cut -d'|' -f1)
 	[[ -n $jobName ]] && firefox::open_in_new_tab ${jobsURL}/${jobName} &>/dev/null
 fi
 [[ -z $wall ]] && echo "Jenkins" && echo && echo \#d03f3f && exit 0

@@ -5,5 +5,5 @@ if [[ -z $BLOCK_BUTTON ]]; then
 	date '+   %d/%m/%Y   %H:%M'
 else
 	# The else part is what we want to do when the block is clicked
-	cal | rofi -dmenu -no-fullscreen -hide-scrollbar -font "DejaVu Sans Mono 10" -p "$(date +"%A")" -padding 2 -width 11 -location 3 -yoffset 24 -lines 7
+	yad --calendar --no-buttons --mouse --on-top --undecorated --skip-taskbar
 fi

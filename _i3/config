@@ -26,9 +26,8 @@ exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc -u c "lower ri
 exec_always --no-startup-id (pidof nm-applet || nm-applet)
 
 # Floting windows
-for_window [class="Wicd-client.py"] floating enable
-for_window [class="Vinagre"] floating enable
-for_window [class="feh"] floating enable
+set $floating_windows "^(Yad|Wicd-client.py|Vinagre|feh)$"
+for_window [class=$floating_windows] floating enable
 
 # Highlight Colors
 # Emerald:	#19b898
