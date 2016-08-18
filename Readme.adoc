@@ -1,0 +1,3 @@
+= Deprecated
+
+I'm trying to switch to a full Ansible solution, so those files will be progressively migrated towards http://github.com/aanc/playbooks
